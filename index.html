@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vellum Echoes — Let the stories resonate with you</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Cinzel:wght@400;500;600&family=Noto+Serif+SC:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --lacquer:    #0d0a07;
+      --lacquer2:   #1a1208;
+      --cinnabar:   #b83025;
+      --cinnabar2:  #e8472e;
+      --gold:       #c9963a;
+      --gold-pale:  #e8d4a0;
+      --jade:       #4a7a5a;
+      --jade-pale:  #c2d9c8;
+      --paper:      #ede0c4;
+      --paper-dark: #d4c4a0;
+      --paper-aged: #f5ead2;
+      --ink:        #1c1208;
+      --ink-soft:   #3d2e1a;
+      --ink-muted:  #7a6a52;
+      --mist:       #8a9a88;
+      --serif-disp: 'Cinzel', serif;
+      --serif-body: 'Noto Serif', serif;
+      --serif-sc:   'Noto Serif SC', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper-aged);
+      color: var(--ink);
+      font-family: var(--serif-body);
+      font-size: 17.5px;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--lacquer);
+      text-align: center;
+      padding: 0;
+      border-bottom: 4px solid var(--cinnabar);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* SVG bamboo / mist bg */
+    .header-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+
+    /* Red lantern glow top */
+    header::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 180px;
+      background: radial-gradient(ellipse, rgba(184,48,37,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .header-inner {
+      position: relative;
+      z-index: 1;
+      padding: 3.8rem 2rem 3.2rem;
+    }
+
+    /* Chinese characters decorative */
+    .hanzi-row {
+      font-family: var(--serif-sc);
+      font-size: 0.85rem;
+      color: var(--cinnabar);
+      letter-spacing: 0.7em;
+      margin-bottom: 1.4rem;
+      opacity: 0.75;
+    }
+
+    .site-title {
+      font-family: var(--serif-disp);
+      font-size: clamp(2rem, 6vw, 3.8rem);
+      font-weight: 600;
+      color: var(--paper);
+      letter-spacing: 0.08em;
+      line-height: 1.15;
+      margin-bottom: 0.6rem;
+    }
+
+    .site-title span {
+      color: var(--cinnabar2);
+    }
+
+    .site-subtitle {
+      font-family: var(--serif-body);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--gold-pale);
+      letter-spacing: 0.04em;
+      margin-bottom: 2rem;
+      opacity: 0.85;
+    }
+
+    .header-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .header-ornament::before,
+    .header-ornament::after {
+      content: '';
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+    .header-ornament-symbol {
+      color: var(--gold);
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
+      font-family: var(--serif-sc);
+      opacity: 0.8;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--lacquer2);
+      border-bottom: 1px solid #3a2a14;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+    }
+    nav a {
+      font-family: var(--serif-disp);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--paper-dark);
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-right: 1px solid #3a2a14;
+      transition: color 0.2s, background 0.2s;
+      opacity: 0.85;
+    }
+    nav a:first-child { border-left: 1px solid #3a2a14; }
+    nav a:hover { color: var(--gold); background: rgba(201,150,58,0.08); opacity: 1; }
+
+    /* ── PAGE LAYOUT ── */
+    .page-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3.5rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 270px;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.8rem;
+    }
+    .section-label-text {
+      font-family: var(--serif-disp);
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cinnabar);
+      white-space: nowrap;
+    }
+    .section-label-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--paper-dark), transparent);
+    }
+
+    /* ── STORY CARDS — scroll-panel style ── */
+    .story-card {
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    /* Ink brush divider between cards */
+    .brush-divider {
+      margin: 0 0 3rem;
+      text-align: center;
+      position: relative;
+      height: 18px;
+      overflow: visible;
+    }
+
+    /* Card inner — aged paper panel */
+    .card-inner {
+      background: var(--paper);
+      border: 1px solid var(--paper-dark);
+      border-left: 4px solid var(--cinnabar);
+      padding: 1.6rem 1.8rem 1.5rem;
+      position: relative;
+      transition: border-left-color 0.2s;
+    }
+    .card-inner::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 0 22px 22px 0;
+      border-color: transparent var(--paper-aged) transparent transparent;
+    }
+    .story-card:hover .card-inner {
+      border-left-color: var(--gold);
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.7rem;
+    }
+    .card-tag {
+      font-family: var(--serif-disp);
+      font-size: 0.52rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cinnabar);
+      border: 1px solid rgba(184,48,37,0.3);
+      padding: 0.18rem 0.55rem;
+      background: rgba(184,48,37,0.05);
+    }
+    .card-tag.jade {
+      color: var(--jade);
+      border-color: rgba(74,122,90,0.3);
+      background: rgba(74,122,90,0.05);
+    }
+
+    .card-title {
+      font-family: var(--serif-disp);
+      font-size: clamp(1.15rem, 3vw, 1.55rem);
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: 0.03em;
+      line-height: 1.28;
+      margin-bottom: 0.45rem;
+      text-decoration: none;
+      display: block;
+      transition: color 0.2s;
+    }
+    .card-title:hover { color: var(--cinnabar); }
+
+    .card-tagline {
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .card-excerpt {
+      font-size: 0.93rem;
+      color: var(--ink-soft);
+      line-height: 1.78;
+      margin-bottom: 1.2rem;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .card-meta {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .meta-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .read-link {
+      font-family: var(--serif-disp);
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cinnabar);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .read-link:hover { color: var(--gold); }
+    .read-link::after {
+      content: '→';
+      font-size: 0.75rem;
+      font-family: serif;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar { position: sticky; top: 2rem; }
+
+    .sidebar-block {
+      background: var(--paper);
+      border: 1px solid var(--paper-dark);
+      border-top: 3px solid var(--cinnabar);
+      padding: 1.3rem 1.4rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .sidebar-heading {
+      font-family: var(--serif-disp);
+      font-size: 0.56rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--cinnabar);
+      border-bottom: 1px solid var(--paper-dark);
+      padding-bottom: 0.65rem;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-about {
+      font-size: 0.87rem;
+      line-height: 1.72;
+      color: var(--ink-soft);
+    }
+    .sidebar-author-name {
+      font-family: var(--serif-disp);
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.04em;
+    }
+
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .stag {
+      font-size: 0.75rem;
+      color: var(--ink-soft);
+      border: 1px solid var(--paper-dark);
+      padding: 0.25rem 0.65rem;
+      background: var(--paper-aged);
+      cursor: pointer;
+      font-family: var(--serif-body);
+      transition: all 0.2s;
+      font-style: italic;
+    }
+    .stag:hover { background: var(--cinnabar); color: var(--paper); border-color: var(--cinnabar); }
+
+    .archive-list { list-style: none; }
+    .archive-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.42rem 0;
+      border-bottom: 1px solid var(--paper-dark);
+      font-size: 0.85rem;
+    }
+    .archive-list li:last-child { border-bottom: none; }
+    .archive-list a { color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .archive-list a:hover { color: var(--cinnabar); }
+    .archive-count {
+      font-size: 0.72rem;
+      color: var(--mist);
+    }
+
+    /* Sidebar quote box */
+    .sidebar-quote {
+      font-style: italic;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--ink-muted);
+      padding: 0.3rem 0;
+    }
+    .sidebar-quote cite {
+      display: block;
+      margin-top: 0.5rem;
+      font-style: normal;
+      font-size: 0.72rem;
+      color: var(--cinnabar);
+      letter-spacing: 0.06em;
+      font-family: var(--serif-disp);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--lacquer);
+      border-top: 4px solid var(--cinnabar);
+      color: var(--ink-muted);
+      text-align: center;
+      padding: 2.8rem 2rem;
+    }
+    .footer-hanzi {
+      font-family: var(--serif-sc);
+      font-size: 1.4rem;
+      color: var(--cinnabar);
+      letter-spacing: 0.5em;
+      display: block;
+      margin-bottom: 0.8rem;
+      opacity: 0.6;
+    }
+    .footer-title {
+      font-family: var(--serif-disp);
+      color: var(--gold);
+      font-size: 0.88rem;
+      letter-spacing: 0.18em;
+      margin-bottom: 0.5rem;
+    }
+    footer p { font-size: 0.76rem; line-height: 1.7; }
+    footer a { color: var(--paper-dark); text-decoration: none; }
+
+    /* ── EDIT BANNER ── */
+    .edit-banner {
+      background: #2a1508;
+      border-bottom: 1px solid #4a2a10;
+      text-align: center;
+      padding: 0.6rem 1rem;
+      font-size: 0.75rem;
+      color: var(--gold-pale);
+      font-family: var(--serif-disp);
+      letter-spacing: 0.06em;
+      opacity: 0.9;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 740px) {
+      .page-wrap {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding-top: 2.5rem;
+      }
+      .sidebar { position: static; }
+      nav a { padding: 0.75rem 1rem; font-size: 0.55rem; letter-spacing: 0.15em; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="edit-banner">
+  ✦ Edit this file to add your own stories, name, and bio ✦
+</div>
+
+<header>
+  <!-- Bamboo SVG background -->
+  <svg class="header-bg" viewBox="0 0 1200 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#c9963a" stroke-width="2" fill="none" opacity="0.6">
+      <!-- bamboo stalks -->
+      <line x1="80" y1="0" x2="80" y2="320"/><line x1="82" y1="0" x2="82" y2="320"/>
+      <line x1="80" y1="60" x2="80" y2="62"/><line x1="80" y1="130" x2="80" y2="132"/><line x1="80" y1="200" x2="80" y2="202"/><line x1="80" y1="270" x2="80" y2="272"/>
+      <line x1="260" y1="0" x2="260" y2="320"/><line x1="262" y1="0" x2="262" y2="320"/>
+      <line x1="260" y1="80" x2="260" y2="82"/><line x1="260" y1="160" x2="260" y2="162"/><line x1="260" y1="240" x2="260" y2="242"/>
+      <line x1="940" y1="0" x2="940" y2="320"/><line x1="942" y1="0" x2="942" y2="320"/>
+      <line x1="940" y1="70" x2="940" y2="72"/><line x1="940" y1="150" x2="940" y2="152"/><line x1="940" y1="230" x2="940" y2="232"/>
+      <line x1="1120" y1="0" x2="1120" y2="320"/><line x1="1122" y1="0" x2="1122" y2="320"/>
+      <line x1="1120" y1="90" x2="1120" y2="92"/><line x1="1120" y1="175" x2="1120" y2="177"/>
+    </g>
+    <!-- bamboo leaves -->
+    <g stroke="#c9963a" stroke-width="1.2" fill="none" opacity="0.5">
+      <path d="M82 60 Q100 45 120 50"/><path d="M82 60 Q95 75 110 68"/>
+      <path d="M260 80 Q278 65 298 70"/><path d="M260 80 Q272 95 288 88"/>
+      <path d="M940 70 Q958 55 978 60"/><path d="M940 70 Q952 85 968 78"/>
+      <path d="M1120 90 Q1138 75 1158 80"/>
+    </g>
+    <!-- mountain silhouettes -->
+    <g fill="#c9963a" opacity="0.15">
+      <polygon points="400,320 500,160 600,320"/>
+      <polygon points="480,320 600,120 720,320"/>
+      <polygon points="600,320 680,180 760,320"/>
+    </g>
+    <!-- mist lines -->
+    <g stroke="#c9963a" stroke-width="0.5" opacity="0.2">
+      <line x1="350" y1="250" x2="650" y2="240"/>
+      <line x1="300" y1="275" x2="700" y2="265"/>
+    </g>
+  </svg>
+
+  <div class="header-inner">
+    <h1 class="site-title">Vellum <span>Echoes</span></h1>
+    <p class="site-subtitle">Let the stories resonate with you</p>
+  </div>
+</header>
+
+<nav>
+  <a href="#stories">Stories</a>
+  <a href="#about">About</a>
+  <a href="#archive">Archive</a>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- ── MAIN COLUMN ── -->
+  <main id="stories">
+
+    <div class="section-label">
+      <span class="section-label-text">Latest tales</span>
+      <span class="section-label-line"></span>
+    </div>
+
+    <!-- STORY 1 -->
+    <article class="story-card">
+      <div class="card-inner">
+        <div class="card-tags">
+          <span class="card-tag">Forest · Treasure</span>
+          <span class="card-tag jade">Dynasty Era</span>
+        </div>
+        <a class="card-title" href="story-1.html">The Jade Compass of the Wulin Forest</a>
+        <p class="card-tagline">Deep in the forest, the compass needle did not point north. It pointed down.</p>
+        <p class="card-excerpt">
+          Lei Fang had been a mapmaker's apprentice for three years before she found the compass in her master's locked chest — a disc of pale green jade with no markings, no mechanism, and yet it moved. The forest of Wulin was three days east. She left before dawn, before she could change her mind.
+        </p>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span>June 2026</span>
+            <span class="meta-dot"></span>
+            <span>~9 min read</span>
+          </div>
+          <a class="read-link" href="story-1.html">Read the tale</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- BRUSH DIVIDER -->
+    <div class="brush-divider" aria-hidden="true">
+      <svg viewBox="0 0 400 18" width="400" height="18" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+        <path d="M10,9 Q60,4 120,9 Q180,14 200,9 Q220,4 280,9 Q340,14 390,8" stroke="#c9963a" stroke-width="1.5" fill="none" opacity="0.45" stroke-linecap="round"/>
+        <circle cx="200" cy="9" r="3" fill="#c9963a" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <!-- STORY 2 -->
+    <article class="story-card">
+      <div class="card-inner">
+        <div class="card-tags">
+          <span class="card-tag">Ancient Temple</span>
+          <span class="card-tag jade">Cave · Mystery</span>
+        </div>
+        <a class="card-title" href="story-2.html">The Temple Beneath Crimson Mountain</a>
+        <p class="card-tagline">The monks said no one had opened the lower gate in four hundred years. They were wrong by one night.</p>
+        <p class="card-excerpt">
+          When the monsoon floods receded, they revealed a stone arch at the base of Crimson Mountain that appeared on no record and bore no dynasty's seal. Scholar Chen Wei brought candles, rope, and his youngest student. He should have brought more rope.
+        </p>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span>May 2026</span>
+            <span class="meta-dot"></span>
+            <span>~11 min read</span>
+          </div>
+          <a class="read-link" href="story-2.html">Read the tale</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- BRUSH DIVIDER -->
+    <div class="brush-divider" aria-hidden="true">
+      <svg viewBox="0 0 400 18" width="400" height="18" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+        <path d="M10,9 Q80,14 150,8 Q200,3 250,9 Q310,15 390,8" stroke="#c9963a" stroke-width="1.5" fill="none" opacity="0.45" stroke-linecap="round"/>
+        <circle cx="200" cy="9" r="3" fill="#c9963a" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <!-- STORY 3 -->
+    <article class="story-card">
+      <div class="card-inner">
+        <div class="card-tags">
+          <span class="card-tag">Palace Intrigue</span>
+          <span class="card-tag jade">Tang Dynasty</span>
+        </div>
+        <a class="card-title" href="story-3.html">A Thief in the Hall of Ten Thousand Years</a>
+        <p class="card-tagline">She had memorised the palace in the dark. She had not counted on the emperor being awake.</p>
+        <p class="card-excerpt">
+          The imperial palace of Changan slept at the third hour — all except the Emperor's study, where a light had burned every night for thirty years. Xiu Mei knew every corridor, every guard rotation, every loose floor tile. What she did not know was why the Emperor never slept, and what he kept reading in that warm, solitary light.
+        </p>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span>April 2026</span>
+            <span class="meta-dot"></span>
+            <span>~14 min read</span>
+          </div>
+          <a class="read-link" href="story-3.html">Read the tale</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- BRUSH DIVIDER -->
+    <div class="brush-divider" aria-hidden="true">
+      <svg viewBox="0 0 400 18" width="400" height="18" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+        <path d="M10,8 Q70,13 140,7 Q190,2 240,8 Q300,14 390,9" stroke="#c9963a" stroke-width="1.5" fill="none" opacity="0.45" stroke-linecap="round"/>
+        <circle cx="200" cy="9" r="3" fill="#c9963a" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <!-- STORY 4 -->
+    <article class="story-card">
+      <div class="card-inner">
+        <div class="card-tags">
+          <span class="card-tag">Cave · Treasure</span>
+          <span class="card-tag jade">Song Dynasty</span>
+        </div>
+        <a class="card-title" href="story-4.html">What the River Carried Out of the Mountain</a>
+        <p class="card-tagline">Gold does not rust. That was how they knew the cave had never flooded — not once, in a thousand years.</p>
+        <p class="card-excerpt">
+          The farmers upstream found the first piece after the spring melt — a small bronze figurine, green with age but undamaged. By summer, divers had traced the river to its source: a cave in the mountain whose entrance breathed warm air even in winter, as if something inside was still alive.
+        </p>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span>March 2026</span>
+            <span class="meta-dot"></span>
+            <span>~7 min read</span>
+          </div>
+          <a class="read-link" href="story-4.html">Read the tale</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ADD MORE: copy an <article class="story-card"> block and paste it here with a brush divider above it -->
+
+  </main>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+
+    <div class="sidebar-block" id="about">
+      <p class="sidebar-heading">About this blog</p>
+      <div class="sidebar-about">
+        <strong class="sidebar-author-name">Your Name</strong>
+        Replace this with a few sentences about yourself — what draws you to ancient China and adventure fiction, and what readers can expect here. Keep it warm and personal.
+      </div>
+    </div>
+
+    <div class="sidebar-block">
+      <p class="sidebar-heading">A traveller's thought</p>
+      <blockquote class="sidebar-quote">
+        "The forest remembers every foot that has passed through it. The cave remembers every torch. Only the palace forgets — because it was built to."
+        <cite>— from The Jade Compass</cite>
+      </blockquote>
+    </div>
+
+    <div class="sidebar-block">
+      <p class="sidebar-heading">Browse by theme</p>
+      <div class="tag-cloud">
+        <span class="stag">Ancient forests</span>
+        <span class="stag">Temple ruins</span>
+        <span class="stag">Hidden treasure</span>
+        <span class="stag">Palace intrigue</span>
+        <span class="stag">Dynasty lore</span>
+        <span class="stag">Cave secrets</span>
+        <span class="stag">Exploration</span>
+        <span class="stag">Old magic</span>
+        <span class="stag">Maps</span>
+      </div>
+    </div>
+
+    <div class="sidebar-block" id="archive">
+      <p class="sidebar-heading">Archive</p>
+      <ul class="archive-list">
+        <li><a href="#">June 2026</a><span class="archive-count">1 tale</span></li>
+        <li><a href="#">May 2026</a><span class="archive-count">1 tale</span></li>
+        <li><a href="#">April 2026</a><span class="archive-count">1 tale</span></li>
+        <li><a href="#">March 2026</a><span class="archive-count">1 tale</span></li>
+      </ul>
+    </div>
+
+  </aside>
+
+</div>
+
+<footer>
+  <p class="footer-title">Vellum Echoes</p>
+  <p>© 2026 Your Name · All rights reserved</p>
+  <p style="margin-top: 0.5rem; opacity: 0.45;">Let the stories resonate with you.</p>
+</footer>
+
+</body>
+</html>
